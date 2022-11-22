@@ -21,7 +21,21 @@ NOTE: created_at and updated_at must be converted to string object in ISO format
     Format: format: %Y-%m-%dT%H:%M:%S.%f
 NOTE: __str__: should print: [<class name>] (<self.id>) <self.__dict__>
 """
+import uuid
+from datetime import datetime
+import json
+
+
 class BaseModel:
-    """class BaseModel"""
-    def __init___(self):
-        self.id = 
+    """ This is the base class of the models. It contains the core features\
+    that will be inherited by all forms of models in the application """
+    def __init__(self):
+        """ This is the constructor of the base model """
+        current_time = datetime.now()
+        self.id = str(uuid.uuid4())
+        self.created_at = current_time.strftime("%Y-%m-%dT%H:%M:%S.%f")
+        self.updated_at = current_time.strftime("%Y-%m-%dT%H:%M:%S.%f")
+
+    def __str__(self):
+        my_object = '['type(self).__name__+'] ('+self.id+') '+json.dumps(self.__dict__)
+        return my_object
