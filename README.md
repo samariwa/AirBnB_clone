@@ -32,30 +32,30 @@
 10. How to handle named arguments in a function
 ### Requirements
 #### Python Scripts
-A. Allowed editors: vi, vim, emacs
-B. All your files will be interpreted/compiled on Ubuntu 20.04 LTS using python3 (version 3.8.5)
-C. All your files should end with a new line
-D. The first line of all your files should be exactly #!/usr/bin/python3
-E. A README.md file, at the root of the folder of the project, is mandatory
-F. Your code should use the pycodestyle (version 2.8.*)
-G. All your files must be executable
-H. The length of your files will be tested using wc
-I. All your modules should have a documentation 
-J. All your functions (inside and outside a class) should have a documentation 
+	A. Allowed editors: vi, vim, emacs
+	B. All your files will be interpreted/compiled on Ubuntu 20.04 LTS using python3 (version 3.8.5)
+	C. All your files should end with a new line
+	D. The first line of all your files should be exactly #!/usr/bin/python3
+	E. A README.md file, at the root of the folder of the project, is mandatory
+	F. Your code should use the pycodestyle (version 2.8.*)
+	G. All your files must be executable
+	H. The length of your files will be tested using wc
+	I. All your modules should have a documentation 
+	J. All your functions (inside and outside a class) should have a documentation 
  => NOTE - Length of Documentation will be verified
 #### Python Unit Tests
-A. Allowed editors: vi, vim, emacs
-B. All your files should end with a new line
-C. All your test files should be inside a folder tests
-D. You have to use the unittest module
-E. All your test files should be python files
-F. All your test files and folders should start by test_
-G. Your file organization in the tests folder should be the same as your project
-H. All your tests should be executed by using this command: python3 -m unittest discover tests
-I. You can also test file by file by using this command: python3 -m unittest tests/test_models/test_base_model.py
-J. All your modules should have a documentation
-K. All your classes should have a documentation 
-L. All your functions (inside and outside a class) should have a documentation 
+	A. Allowed editors: vi, vim, emacs
+	B. All your files should end with a new line
+	C. All your test files should be inside a folder tests
+	D. You have to use the unittest module
+	E. All your test files should be python files
+	F. All your test files and folders should start by test_
+	G. Your file organization in the tests folder should be the same as your project
+	H. All your tests should be executed by using this command: python3 -m unittest discover tests
+	I. You can also test file by file by using this command: python3 -m unittest tests/test_models/test_base_model.py
+	J. All your modules should have a documentation
+	K. All your classes should have a documentation 
+	L. All your functions (inside and outside a class) should have a documentation 
 
 ### More Info
 1. Your shell should work both interactive and non-interactive
