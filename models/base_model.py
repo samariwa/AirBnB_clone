@@ -50,15 +50,8 @@ class BaseModel:
 
     def __str__(self):
         """Returns String repersentation of class"""
-        my_object = "[{:s}] ({:s}) {:s}"
-        format_date = "%Y-%m-%dT%H:%M:%S.%f"
-        c = repr(self.created_at)
-        u = repr(self.updated_at)
-        my_dict = self.__dict__
-        my_dict['created_at'] = c
-        my_dict['updated_at'] = u
-        my_string = json.dumps(my_dict)
-        my_object = my_object.format(type(self).__name__, self.id, my_string)
+        my_object = "[{:s}] ({:s}) {}"
+        my_object = my_object.format(type(self).__name__, self.id, self.__dict__)
         return my_object
 
     def to_dict(self):
