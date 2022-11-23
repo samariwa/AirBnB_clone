@@ -29,25 +29,25 @@ import uuid
 from datetime import datetime
 import json
 
-
 class BaseModel:
     """ This is the base class of the models. It contains the core features\
     that will be inherited by all forms of models in the application """
     def __init__(self, *args, **kwargs):
         """ This is the constructor of the base model """
-        current_time = datetime.now()
+        current_time = datetime.today()
         self.id = str(uuid.uuid4())
         self.created_at = current_time
         self.updated_at = current_time
         if kwargs is not None:
+            my_format = "%Y-%m-%dT%H:%M:%S.%f"
             for key, value in kwargs.items():
                 if key == 'id':
                     self.id = value
                 if key == 'created_at':
-                    self.created_at = value
+                    self.created_at = datetime.strptime(value, my_format)
                 if key == 'updated_at':
-                    self.updated_at = value
-
+                    self.updated_at = datetime.strptime(value, my_format)
+   
     def __str__(self):
         """Returns String repersentation of class"""
         my_object = "[{:s}] ({:s}) {}"
@@ -56,10 +56,10 @@ class BaseModel:
 
     def to_dict(self):
         """Returns dictionary representation of class"""
-        d = self.__dict__
+        d = self.__dict__.copy()
         d['__class__'] = type(self).__name__
-        d['created_at'] = d['created_at'].strftime("%Y-%m-%dT%H:%M:%S.%f")
-        d['updated_at'] = d['updated_at'].strftime("%Y-%m-%dT%H:%M:%S.%f")
+        d['created_at'] = d['created_at'].isoformat()
+        d['updated_at'] = d['updated_at'].isoformat()
         return d
 
     def save(self):
