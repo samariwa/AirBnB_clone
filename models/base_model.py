@@ -60,7 +60,7 @@ class BaseModel:
         d['__class__'] = type(self).__name__
         d['created_at'] = d['created_at'].strftime("%Y-%m-%dT%H:%M:%S.%f")
         d['updated_at'] = d['updated_at'].strftime("%Y-%m-%dT%H:%M:%S.%f")
-        return json.dumps(d)
+        return d
 
     def save(self):
         """Updates upadte time to current"""
