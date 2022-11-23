@@ -29,13 +29,31 @@ import json
 class BaseModel:
     """ This is the base class of the models. It contains the core features\
     that will be inherited by all forms of models in the application """
-    def __init__(self):
+    def __init__(self, *args, **kwargs):
         """ This is the constructor of the base model """
         current_time = datetime.now()
         self.id = str(uuid.uuid4())
-        self.created_at = current_time.strftime("%Y-%m-%dT%H:%M:%S.%f")
-        self.updated_at = current_time.strftime("%Y-%m-%dT%H:%M:%S.%f")
+        self.created_at = current_time
+        self.updated_at = current_time
+        if kwargs is not None:
+            for key, value in kwargs.items():
+                if key == 'id':
+                    self.id = value
+                if key == 'created_at':
+                    self.created_at = value
+                if key == 'updated_at':
+                    self.updated_at = value
 
     def __str__(self):
-        my_object = '['type(self).__name__+'] ('+self.id+') '+json.dumps(self.__dict__)
+        my_object = '['+type(self).__name__+'] ('+self.id+') '+json.dumps(self.__dict__)
         return my_object
+
+    def save(self):
+        self.updated_at = datetime.now()
+
+    def to_dict(self):
+        obj_dictionary = self.__dict__
+        obj_dictionary['__class__'] = type(self).__name__
+        obj_dictionary['created_at'] = obj_dictionary['created_at'].strftime("%Y-%m-%dT%H:%M:%S.%f")
+        obj_dictionary['updated_at'] = obj_dictionary['updated_at'].strftime("%Y-%m-%dT%H:%M:%S.%f")
+        return json.dumps(obj_dictionary)
