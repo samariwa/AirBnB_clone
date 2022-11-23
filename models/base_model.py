@@ -28,6 +28,8 @@ NOTE: __str__: should print: [<class name>] (<self.id>) <self.__dict__>
 import uuid
 from datetime import datetime
 import json
+import storage
+
 
 class BaseModel:
     """ This is the base class of the models. It contains the core features\
@@ -47,7 +49,8 @@ class BaseModel:
                     self.created_at = datetime.strptime(value, my_format)
                 if key == 'updated_at':
                     self.updated_at = datetime.strptime(value, my_format)
-   
+        else:
+            storage.new()
     def __str__(self):
         """Returns String repersentation of class"""
         my_object = "[{:s}] ({:s}) {}"
@@ -65,3 +68,4 @@ class BaseModel:
     def save(self):
         """Updates upadte time to current"""
         self.updated_at = datetime.now()
+        storage.save()
