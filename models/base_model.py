@@ -49,13 +49,22 @@ class BaseModel:
                     self.updated_at = value
 
     def __str__(self):
-"""Returns String repersentation of class"""
+        """Returns String repersentation of class"""
         my_object = "[{:s}] ({:s}) {:s}"
-        my_dict = json.dumps(self.__dict__)
-        my_object = my_object.format(type(self).__name__, self.id, my_dict)
+        c = self.created_at
+        modify_c = "datetime.datetime({:d}, {:d}, {:d}, {:d}, {:d}, {:d}, {:d})"
+        modify_c = modify_c.format(c.year, c.month, c.day, c.hour,c.minute, c.second, c.microsecond)
+        u = self.updated_at
+        modify_u = "datetime.datetime({:d}, {:d}, {:d}, {:d}, {:d}, {:d}, {:d})"
+        modify_u = modify_c.format(u.year, u.month, u.day, u.hour, u.minute, u.second, u.microsecond)
+        my_dict = self.__dict__
+        my_dict['created_at'] = modify_c
+        my_dict['updated_at'] = modify_u
+        my_string = json.dumps(my_dict)
+        my_object = my_object.format(type(self).__name__, self.id, my_string)
         return my_object
 
- 
+
 
     def to_dict(self):
         obj_dictionary = self.__dict__
@@ -67,8 +76,4 @@ class BaseModel:
 
     def save(self):
         """Updates upadte time to current"""
-         self.updated_at= datetime.now()
-   
-
-   
-
+        self.updated_at= datetime.now()
