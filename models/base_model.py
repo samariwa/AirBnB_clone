@@ -28,6 +28,7 @@ NOTE: __str__: should print: [<class name>] (<self.id>) <self.__dict__>
 import uuid
 from datetime import datetime
 import json
+import storage
 
 
 class BaseModel:
@@ -35,40 +36,36 @@ class BaseModel:
     that will be inherited by all forms of models in the application """
     def __init__(self, *args, **kwargs):
         """ This is the constructor of the base model """
-        current_time = datetime.now()
+        current_time = datetime.today()
         self.id = str(uuid.uuid4())
         self.created_at = current_time
         self.updated_at = current_time
         if kwargs is not None:
+            my_format = "%Y-%m-%dT%H:%M:%S.%f"
             for key, value in kwargs.items():
                 if key == 'id':
                     self.id = value
                 if key == 'created_at':
-                    self.created_at = value
+                    self.created_at = datetime.strptime(value, my_format)
                 if key == 'updated_at':
-                    self.updated_at = value
-
+                    self.updated_at = datetime.strptime(value, my_format)
+        else:
+            storage.new()
     def __str__(self):
-"""Returns String repersentation of class"""
-        my_object = "[{:s}] ({:s}) {:s}"
-        my_dict = json.dumps(self.__dict__)
-        my_object = my_object.format(type(self).__name__, self.id, my_dict)
+        """Returns String repersentation of class"""
+        my_object = "[{:s}] ({:s}) {}"
+        my_object = my_object.format(type(self).__name__, self.id, self.__dict__)
         return my_object
 
- 
-
     def to_dict(self):
-        obj_dictionary = self.__dict__
-        obj_dictionary['__class__'] = type(self).__name__
-        obj_dictionary['created_at'] = obj_dictionary['created_at'].strftime("%Y-%m-%dT%H:%M:%S.%f")
-        obj_dictionary['updated_at'] = obj_dictionary['updated_at'].strftime("%Y-%m-%dT%H:%M:%S.%f")
-        return json.dumps(obj_dictionary)
-
+        """Returns dictionary representation of class"""
+        d = self.__dict__.copy()
+        d['__class__'] = type(self).__name__
+        d['created_at'] = d['created_at'].isoformat()
+        d['updated_at'] = d['updated_at'].isoformat()
+        return d
 
     def save(self):
         """Updates upadte time to current"""
-         self.updated_at= datetime.now()
-   
-
-   
-
+        self.updated_at = datetime.now()
+        storage.save()
