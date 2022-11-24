@@ -52,6 +52,13 @@ class HBNBCommand(cmd.Cmd):
         else:
             print("** class name missing **")
 
+    def do_show(self, arg):
+        if arg != "":
+            class_name, class_id = arg.split(" ")
+            if class_name == "BaseModel":
+                my_dict = storage.all()
+                my_id = "BaseModel" + "." + class_id
+                print(my_dict[my_id]) 
 
 if __name__ == '__main__':
     HBNBCommand().cmdloop()
