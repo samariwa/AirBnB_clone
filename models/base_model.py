@@ -51,10 +51,12 @@ class BaseModel:
                     self.updated_at = datetime.strptime(value, my_format)
         else:
             storage.new()
+
     def __str__(self):
         """Returns String repersentation of class"""
         my_object = "[{:s}] ({:s}) {}"
-        my_object = my_object.format(type(self).__name__, self.id, self.__dict__)
+        my_dict = self.__dict__
+        my_object = my_object.format(type(self).__name__, self.id, my_dict)
         return my_object
 
     def to_dict(self):
