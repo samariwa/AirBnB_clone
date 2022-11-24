@@ -28,7 +28,7 @@ NOTE: __str__: should print: [<class name>] (<self.id>) <self.__dict__>
 import uuid
 from datetime import datetime
 import json
-import storage
+from models import storage
 
 
 class BaseModel:
