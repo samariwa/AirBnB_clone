@@ -58,7 +58,16 @@ class HBNBCommand(cmd.Cmd):
             if class_name == "BaseModel":
                 my_dict = storage.all()
                 my_id = "BaseModel" + "." + class_id
-                print(my_dict[my_id]) 
+                print(my_dict[my_id])
+
+    def do_destroy(self, arg):
+        pass
+
+    def do_all(self, arg):
+        pass
+
+    def do_update(self, arg):
+        pass
 
 if __name__ == '__main__':
     HBNBCommand().cmdloop()
