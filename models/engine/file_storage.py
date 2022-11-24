@@ -16,31 +16,37 @@ only if the JSON file (__file_path) exists ; otherwise, do nothing.\
 If the file doesn't exist, no exception should be raised)
 """
 import json
-from os import path 
+from os import path
 
 class FileStorage:
     __file_path = "Storage.json"
     __objects = {} #<class name>.id
 
     def __init__(self):
-        self.__objects = FileStorage.__objects
         pass
 
     def all(self):
         """Returns object"""
-        return self.__objects
+        return type(self).__objects
 
     def new(self, obj):
         """Saves keys to objects"""
         my_classname = type(__class__).__name__
-        my_key = my_classname + '.' + self.id
-        __object[my_key] = obj
+        my_key = my_classname + '.' + "70"
+        type(self).__objects[my_key] = obj
 
     def save(self):
         """Save method"""
         my_file_path = type(self).__file_path
+        print("It is I")
+        print(type(self).__objects)
+        print("It is I")
+        my_obj = type(self).__objects
         with open(my_file_path, "w", encoding="UTF-8") as f:
-            json.dump(self.__objects, f)
+            json.dump(my_obj, f)
+        #my_file_path = type(self).__file_path
+        #with open(my_file_path, "w", encoding="UTF-8") as f:
+         #   json.dump(self.__objects, f)
 
     def reload(self):
         """Reload method"""
