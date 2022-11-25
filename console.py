@@ -101,10 +101,24 @@ class HBNBCommand(cmd.Cmd):
 
 
     def do_all(self, arg):
-        pass
-
+        if arg == "BaseModel" or arg == "":
+            my_dict = storage.all()
+            my_list = []
+            for keys, v in my_dict.items():
+                class_name, class_id = keys.split(".")
+                my_object = "[BaseModel] ({:s}) {}"
+                del v['__class__']
+                f = "%Y-%m-%dT%H:%M:%S.%f"
+                v['created_at'] = datetime.strptime(v['created_at'], f)
+                v['updated_at'] = datetime.strptime(v['updated_at'], f)
+                my_object = my_object.format(class_id, v)
+                my_list.append(my_object)
+            print(my_list)
+        else:
+            print("** class doesn't exist **")
+	
     def do_update(self, arg):
-        pass
+        print(len(arg))
 
 
 if __name__ == '__main__':
