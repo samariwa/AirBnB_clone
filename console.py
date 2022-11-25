@@ -118,8 +118,30 @@ class HBNBCommand(cmd.Cmd):
             print("** class doesn't exist **")
 	
     def do_update(self, arg):
-        print(len(arg))
-
+        args_list = list(arg.split(" "))
+        if len(args_list) < 4:
+            if len(args_list) == 0:
+                print("** class name missing **")
+            elif len(args_list) == 1:
+                print("** instance id missing **")
+            elif len(args_list) == 2:
+                print("** attribute name missing **")
+            elif len(args_list) == 3:
+                print("** value missing **")
+        else:
+            if args_list[0] != 'BaseModel':
+                print("** class doesn't exist **")
+            cls_id = args_list[1]
+            cls_attr = args_list[2]
+            cls_val = args_list[3]
+            my_dict = storage.all()
+            try:
+                my_obj = my_dict[cls_id]
+                my_obj[cls_attr] = cls_val
+                storage.save()
+            except:
+                print("** no instance found **")
+                return
 
 if __name__ == '__main__':
     HBNBCommand().cmdloop()
