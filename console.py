@@ -81,7 +81,24 @@ class HBNBCommand(cmd.Cmd):
             print("** class name missing **")
 
     def do_destroy(self, arg):
-        pass
+        try:
+            class_name, class_id = arg.split(" ")
+        except ValueError:
+            if arg == "BaseModel":
+                print("** instance id missing **")
+            else:
+                print("** class doesn't exist **") 
+            return
+        if class_name == "BaseModel" and class_id != "":
+            my_dict = storage.all()
+            my_id = "BaseModel" + "." + class_id
+            try:
+                del my_dict[my_id]
+            except:
+                print("** no instance found **")
+                return
+            storage.save()
+
 
     def do_all(self, arg):
         pass
