@@ -17,6 +17,12 @@ create:
 """
 import cmd
 from models.base_model import BaseModel
+from models.user import User
+from models.state import State
+from models.city import City
+from models.amenity import Amenity
+from models.place import Place
+from models.review import Review
 from models import storage
 from datetime import datetime
 
@@ -44,8 +50,9 @@ class HBNBCommand(cmd.Cmd):
 
     def do_create(self, arg):
         if arg != "":
-            if arg == "BaseModel":
-                my_model = BaseModel()
+            if arg in HBNBCommand.__classes:
+                cls = globals()[arg]
+                my_model = cls()
                 storage.new(my_model.to_dict())
                 storage.save()
                 print(my_model.id)
