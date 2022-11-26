@@ -92,14 +92,14 @@ class HBNBCommand(cmd.Cmd):
         try:
             class_name, class_id = arg.split(" ")
         except ValueError:
-            if arg == "BaseModel":
+            if arg in HBNBCommand.__classes:
                 print("** instance id missing **")
             else:
                 print("** class doesn't exist **") 
             return
-        if class_name == "BaseModel" and class_id != "":
+        if class_name in HBNBCommand.__classes and class_id != "":
             my_dict = storage.all()
-            my_id = "BaseModel" + "." + class_id
+            my_id = class_name + "." + class_id
             try:
                 del my_dict[my_id]
             except:
@@ -109,18 +109,30 @@ class HBNBCommand(cmd.Cmd):
 
 
     def do_all(self, arg):
-        if arg == "BaseModel" or arg == "":
+        if arg in HBNBCommand.__classes or arg == "":
             my_dict = storage.all()
             my_list = []
             for keys, v in my_dict.items():
+                to_append = False
                 class_name, class_id = keys.split(".")
-                my_object = "[BaseModel] ({:s}) {}"
-                del v['__class__']
+                my_object = "["+class_name+"] ({:s}) {}"
+                if arg != "":
+                    if class_name == arg:
+                        to_append = True
+                else:
+                    del v['__class__']
+                    f = "%Y-%m-%dT%H:%M:%S.%f"
+                    v['created_at'] = datetime.strptime(v['created_at'], f)
+                    v['updated_at'] = datetime.strptime(v['updated_at'], f)
+                    to_append = True
+                """
                 f = "%Y-%m-%dT%H:%M:%S.%f"
                 v['created_at'] = datetime.strptime(v['created_at'], f)
                 v['updated_at'] = datetime.strptime(v['updated_at'], f)
+                """
                 my_object = my_object.format(class_id, v)
-                my_list.append(my_object)
+                if to_append == True:
+                    my_list.append(my_object)
             print(my_list)
         else:
             print("** class doesn't exist **")
