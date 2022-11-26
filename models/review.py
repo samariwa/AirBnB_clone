@@ -9,7 +9,7 @@ Public class attributes:
 from models.base_model import BaseModel
 
 
-class User(BaseModel):
+class Review(BaseModel):
     """
     This is the review class that inherits from the BaseModel class
     """
