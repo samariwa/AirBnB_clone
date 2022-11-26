@@ -149,8 +149,9 @@ class HBNBCommand(cmd.Cmd):
             elif len(args_list) == 3:
                 print("** value missing **")
         else:
-            if args_list[0] != 'BaseModel':
+            if args_list[0] not in HBNBCommand.__classes:
                 print("** class doesn't exist **")
+                return
             cls_model = args_list[0]
             cls_id = args_list[1]
             cls_attr = args_list[2]
