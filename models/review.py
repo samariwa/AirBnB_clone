@@ -1,20 +1,18 @@
 #!/usr/bin/python3
 """
-This module contains a class User which inherits from the BaseModel
+This module contains a class Review which inherits from the BaseModel
 Public class attributes:
-    email: string - empty string
-    password: string - empty string
-    first_name: string - empty string
-    last_name: string - empty string
+    place_id: string - empty string. It will be Place.id
+    user_id: string - empty string. It will be User.id
+    text: string - empty string
 """
 from models.base_model import BaseModel
 
 
 class User(BaseModel):
     """
-    This is the user class that inherits from the BaseModel class
+    This is the review class that inherits from the BaseModel class
     """
-    email = ''
-    password = ''
-    first_name = ''
-    last_name = ''
+    place_id = ''
+    user_id = ''
+    text = ''
