@@ -24,6 +24,7 @@ from datetime import datetime
 class HBNBCommand(cmd.Cmd):
     """class HBNBCommand"""
     prompt = '(hbnb) '
+    __classes = ['BaseModel', 'User', 'State', 'City', 'Amenity', 'Place', 'Review']
 
     def __init__(self):
         super().__init__()
