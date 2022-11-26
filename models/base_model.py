@@ -32,10 +32,21 @@ from models import storage
 
 
 class BaseModel:
-    """ This is the base class of the models. It contains the core features\
-    that will be inherited by all forms of models in the application """
+    """ 
+    This is the base class of the models. It contains the core features\
+    that will be inherited by all forms of models in the application 
+    """
     def __init__(self, *args, **kwargs):
-        """ This is the constructor of the base model """
+        """ 
+        This is the constructor of the base model
+        Args:
+            *args: Values passed to the objects
+            **kwargs: Attributes of created objects and their values
+
+        Description: The created_at and updated_at datetime objects
+        are converted to strings.
+	The ID is generated using the UUID module
+        """
         current_time = datetime.today()
         self.id = str(uuid.uuid4())
         self.created_at = current_time
@@ -68,7 +79,7 @@ class BaseModel:
         return d
 
     def save(self):
-        """Updates upadte time to current"""
+        """Updates update time to current"""
         self.updated_at = datetime.now()
         storage.new(self.to_dict())
         storage.save()

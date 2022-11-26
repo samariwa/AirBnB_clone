@@ -7,13 +7,6 @@ The class uses cmd module
 The command interpretor should implement
 quit and EOF to exit the program
 This class deals with providing custom prompt
-
-create:
-    Creates a new instance of BaseModel
-    saves it (to the JSON file)
-    prints the id
-    If the class name is missing, print ** class name missing **
-
 """
 import cmd
 from models.base_model import BaseModel
@@ -28,11 +21,18 @@ from datetime import datetime
 
 
 class HBNBCommand(cmd.Cmd):
-    """class HBNBCommand"""
+    """ 
+    Class HBNBCommand is a subclass of the Cmd class of the cmd module\
+    The class will help in building a console interface for manipulating data\
+    and objects
+    """
     prompt = '(hbnb) '
     __classes = ['BaseModel', 'User', 'State', 'City', 'Amenity', 'Place', 'Review']
 
     def __init__(self):
+        """ 
+        This is the constructor of the HBNBCommand subclass
+	"""
         super().__init__()
 
     def do_quit(self, arg):
@@ -49,6 +49,10 @@ class HBNBCommand(cmd.Cmd):
         pass
 
     def do_create(self, arg):
+        """
+        Creates a new instance of the called model,\
+	saves it (to the JSON file) and prints the id
+	"""
         if arg != "":
             if arg in HBNBCommand.__classes:
                 cls = globals()[arg]
@@ -62,6 +66,10 @@ class HBNBCommand(cmd.Cmd):
             print("** class name missing **")
 
     def do_show(self, arg):
+        """
+        Prints the string representation of an instance based\
+        on the class name and id
+        """
         if arg != "":
             try:
                 class_name, class_id = arg.split(" ")
@@ -89,6 +97,9 @@ class HBNBCommand(cmd.Cmd):
             print("** class name missing **")
 
     def do_destroy(self, arg):
+        """
+        Deletes an instance based on the class name and id
+        """
         try:
             class_name, class_id = arg.split(" ")
         except ValueError:
@@ -109,6 +120,10 @@ class HBNBCommand(cmd.Cmd):
 
 
     def do_all(self, arg):
+        """
+        Prints all string representation of all instances based\
+        or not on the class name.
+        """
         if arg in HBNBCommand.__classes or arg == "":
             my_dict = storage.all()
             my_list = []
@@ -138,6 +153,10 @@ class HBNBCommand(cmd.Cmd):
             print("** class doesn't exist **")
 	
     def do_update(self, arg):
+        """
+        Updates an instance based on the class name and\
+        id by adding or updating attribute
+        """
         args_list = list(arg.split(" "))
         if len(args_list) < 4:
             if len(args_list) == 0:
