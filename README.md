@@ -32,4 +32,11 @@ With the assumption that we have an object called `My_Model`, the following a de
 `./all`
 Prints all string representation of all instances based or not on the class name. Ex: $ all BaseModel or $ all.
 The printed result is a list of strings.
-If the class name doesn’t exist, it prints `** class doesn't exist **` (ex: $ all MyModel)
+If the class name doesn't exist, it prints `** class doesn't exist **` (ex: $ all MyModel)
+`./create`
+Creates a new instance of BaseModel, saves it (to the JSON file) and prints the id. Ex: $ create BaseModel
+If the class name is missing, it prints `** class name missing **` (ex: $ create)
+If the class name doesn't exist, it prints `** class doesn't exist **` (ex: $ create MyModel)
+`./destroy`
+Deletes an instance based on the class name and id (save the change into the JSON file). Ex: (hbnb) destroy BaseModel 1234-1234-1234
+
