@@ -89,9 +89,11 @@ class HBNBCommand(cmd.Cmd):
                     print("** no instance found **")
                     return
                 my_object = "["+class_name+"] ({:s}) {}"
+                """
                 f = "%Y-%m-%dT%H:%M:%S.%f"
                 d['created_at'] = datetime.strptime(d['created_at'], f)
                 d['updated_at'] = datetime.strptime(d['updated_at'], f)
+                """
                 my_object = my_object.format(class_id, d)
                 print(my_object)
         else:
@@ -125,7 +127,7 @@ class HBNBCommand(cmd.Cmd):
         or not on the class name.
         """
         if arg in HBNBCommand.__classes or arg == "":
-            my_dict = storage.all()
+            my_dict = {key: value for key, value in storage.all().items()}
             my_list = []
             for keys, v in my_dict.items():
                 to_append = False
@@ -135,10 +137,13 @@ class HBNBCommand(cmd.Cmd):
                     if class_name == arg:
                         to_append = True
                 else:
-                    del v['__class__']
+                    if v['__class__'] in v:
+                        del v['__class__']
+                    """
                     f = "%Y-%m-%dT%H:%M:%S.%f"
                     v['created_at'] = datetime.strptime(v['created_at'], f)
                     v['updated_at'] = datetime.strptime(v['updated_at'], f)
+                    """
                     to_append = True
                 """
                 f = "%Y-%m-%dT%H:%M:%S.%f"
