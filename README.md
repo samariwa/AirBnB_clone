@@ -30,27 +30,27 @@ root@pc:
 ```
 With the assumption that we have an object called `My_Model`, the following a descriptions of the console commands:\
 
-`###all`\
+###all
 Prints all string representation of all instances based or not on the class name. Ex: (hbnb) all BaseModel or (hbnb) all.\
 The printed result is a list of strings.\
 If the class name doesn't exist, it prints `** class doesn't exist **` (ex: (hbnb) all MyModel)\
 
-`###create`\
+###create
 Creates a new instance of BaseModel, saves it (to the JSON file) and prints the id. Ex: (hbnb) create BaseModel\
 If the class name is missing, it prints `** class name missing **` (ex: (hbnb) create)\
 If the class name doesn't exist, it prints `** class doesn't exist **` (ex: (hbnb) create MyModel)\
 
-`###destroy`\
+###destroy
 Deletes an instance based on the class name and id (save the change into the JSON file). Ex: (hbnb) destroy BaseModel 1234-1234-1234\
 
-`###show`\
+###show
 Prints the string representation of an instance based on the class name and id. Ex: (hbnb) show BaseModel 1234-1234-1234.\
 If the class name is missing, it prints `** class name missing **` (ex: (hbnb) show)\
 If the class name doesn't exist, it prints `** class doesn't exist **` (ex: (hbnb) show MyModel)\
 If the id is missing, print `** instance id missing **` (ex: (hbnb) show BaseModel)\
 If the instance of the class name doesn't exist for the id, it prints `** no instance found **` (ex: (hbnb) show BaseModel 121212)\
 
-`###update`\
+###update
 Updates an instance based on the class name and id by adding or updating attribute (save the change into the JSON file). Ex: (hbnb) update BaseModel 1234-1234-1234 email "aibnb@mail.com"\
 Usage: update <class name> <id> <attribute name> "<attribute value>"\
 Only one attribute can be updated at the time\
@@ -66,9 +66,9 @@ All other arguments should not be used (Ex: (hbnb) update BaseModel 1234-1234-12
 id, created_at and updated_at can't be updated. You can assume they won't be passed in the update command\
 Only simple arguments can be updated: string, integer and float. You can assume nobody will try to update list of ids or datetime\
 
-`###quit`\
+###quit
 exits the program\
 
-`###help`\
+###help
 Shows the various functionalities\
 
