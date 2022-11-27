@@ -29,6 +29,12 @@ class FileStorage:
 
     def all(self):
         """Returns object"""
+        f = "%Y-%m-%dT%H:%M:%S.%f"
+        my_obj = type(self).__objects
+        for k, v in my_obj.items():
+            if type(v['created_at']) is str:
+                v['created_at'] = datetime.strptime(v['created_at'], f)
+                v['updated_at'] = datetime.strptime(v['updated_at'], f)
         return type(self).__objects
 
     def new(self, obj):
@@ -43,9 +49,11 @@ class FileStorage:
         my_file_path = type(self).__file_path
         my_obj = type(self).__objects.copy()
         for k, v in my_obj.items():
+            class_name, _id = k.split(".")
             if type(v['created_at']) is not str:
                 v['created_at'] = v['created_at'].isoformat()
                 v['updated_at'] = v['updated_at'].isoformat()
+                v['__class__'] = class_name
         with open(my_file_path, "w", encoding="UTF-8") as f:
             json.dump(my_obj, f)
 

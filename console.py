@@ -50,7 +50,7 @@ class HBNBCommand(cmd.Cmd):
                         self.count(class_name)
                     elif command[0:4] == "show":
                         cmd = command[5:43].replace('"', '')
-                        arg_id = class_name + " " +cmd
+                        arg_id = class_name + " " + cmd
                         self.do_show(arg_id)
                     elif command[0:7] == "destroy":
                         cmd = command[8:46].replace('"', '')
@@ -59,16 +59,16 @@ class HBNBCommand(cmd.Cmd):
                     else:
                         print("*** Unknown syntax: {}".format(arg))
                         return
-            except:
-                my_list = list(arg.split(" ")) 
+            except error as e:
+                my_list = list(arg.split(" "))
                 if my_list[0] in HBNBCommand.__commands:
                     pass
                 else:
                     print("*** Unknown syntax: {}".format(arg))
 
     def count(self, class_name):
-        """ Implementation for counting objects of a class 
-	Usage: <class name>.count()"""
+        """ Implementation for counting objects of a class
+        Usage: <class name>.count()"""
         get_objects = storage.all()
         count = 0
         for key, value in get_objects.items():
@@ -126,15 +126,12 @@ class HBNBCommand(cmd.Cmd):
                 my_id = class_name + "." + class_id
                 try:
                     d = my_dict[my_id]
+                    if "__class__" in d:
+                        del d['__class__']
                 except Exception as ex:
                     print("** no instance found **")
                     return
                 my_object = "["+class_name+"] ({:s}) {}"
-                """
-                f = "%Y-%m-%dT%H:%M:%S.%f"
-                d['created_at'] = datetime.strptime(d['created_at'], f)
-                d['updated_at'] = datetime.strptime(d['updated_at'], f)
-                """
                 my_object = my_object.format(class_id, d)
                 print(my_object)
         else:
@@ -149,8 +146,10 @@ class HBNBCommand(cmd.Cmd):
         except ValueError:
             if arg in HBNBCommand.__classes:
                 print("** instance id missing **")
-            else:
+            elif arg != "":
                 print("** class doesn't exist **")
+            else:
+                print("** class name missing **")
             return
         if class_name in HBNBCommand.__classes and class_id != "":
             my_dict = storage.all()
@@ -172,25 +171,15 @@ class HBNBCommand(cmd.Cmd):
             my_list = []
             for keys, v in my_dict.items():
                 to_append = False
+                if "__class__" in v:
+                    del v['__class__']
                 class_name, class_id = keys.split(".")
                 my_object = "["+class_name+"] ({:s}) {}"
                 if arg != "":
                     if class_name == arg:
                         to_append = True
                 else:
-                    if v['__class__'] in v:
-                        del v['__class__']
-                    """
-                    f = "%Y-%m-%dT%H:%M:%S.%f"
-                    v['created_at'] = datetime.strptime(v['created_at'], f)
-                    v['updated_at'] = datetime.strptime(v['updated_at'], f)
-                    """
                     to_append = True
-                """
-                f = "%Y-%m-%dT%H:%M:%S.%f"
-                v['created_at'] = datetime.strptime(v['created_at'], f)
-                v['updated_at'] = datetime.strptime(v['updated_at'], f)
-                """
                 my_object = my_object.format(class_id, v)
                 if to_append:
                     my_list.append(my_object)
