@@ -8,11 +8,11 @@ print(my_model.id)
 print(my_model)
 print(type(my_model.created_at))
 print("--")
-my_model_json = my_model.to_dict()
-print(my_model_json)
+my_dict = my_model.to_dict()
+print(my_dict)
 print("JSON of my_model:")
-for key in my_model_json.keys():
-    print("\t{}: ({}) - {}".format(key, type(my_model_json[key]), my_model_json[key]))
+for key in my_dict.keys():
+    print("\t{}: ({}) - {}".format(key, type(my_dict[key]), my_dict[key]))
 
 print("--")
 my_new_model = BaseModel(**my_model_json)
@@ -22,4 +22,3 @@ print(type(my_new_model.created_at))
 
 print("--")
 print(my_model is my_new_model)
-
