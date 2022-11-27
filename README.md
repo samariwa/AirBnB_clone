@@ -62,4 +62,6 @@ id, created_at and updated_at can't be updated. You can assume they won't be pas
 Only simple arguments can be updated: string, integer and float. You can assume nobody will try to update list of ids or datetime
 `quit`
 exits the program
+`help`
+Shows the various functionalities
 
