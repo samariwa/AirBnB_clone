@@ -3,7 +3,7 @@
 
 ![Alt](https://github.com/Bezawork-pr/AirBnB_clone/blob/master/65f4a1dd9c51265f49d0.png?raw=true)
 
-![Build Status](https://img.shields.io/github/directory-file-count/Bezawork-pr/AirBnB_clone?style=flat-square) ![Build Status](https://img.shields.io/github/languages/count/Bezawork-pr/AirBnB_clone?color=red&style=flat-square) ![Build Status](https://img.shields.io/github/languages/top/Bezawork-pr/AirBnB_clone?color=green&style=flat-square)
+![Build Status](https://img.shields.io/github/directory-file-count/Bezawork-pr/AirBnB_clone?style=flat-square) ![Build Status](https://img.shields.io/github/languages/count/Bezawork-pr/AirBnB_clone?color=red&style=flat-square) ![Build Status](https://img.shields.io/github/languages/top/Bezawork-pr/AirBnB_clone?color=green&style=flat-square)\
 The goal of the project is to deploy on your server a simple copy of the AirBnB website.
 The complete web application is composed by:
 - A command interpreter to manipulate data without a visual interface, like in a Shell (perfect for development and debugging)

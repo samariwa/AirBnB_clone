@@ -227,6 +227,7 @@ class HBNBCommand(cmd.Cmd):
                 my_obj = my_dict[cls_key]
                 my_obj[cls_attr] = cls_val
                 storage.save()
+                print("hi")
             except Exception as ex:
                 print("** no instance found **")
                 return
