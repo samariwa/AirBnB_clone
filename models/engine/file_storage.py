@@ -53,7 +53,7 @@ class FileStorage:
             if type(v['created_at']) is not str:
                 v['created_at'] = v['created_at'].isoformat()
                 v['updated_at'] = v['updated_at'].isoformat()
-            v['__class__'] = class_name
+                v['__class__'] = class_name
         with open(my_file_path, "w", encoding="UTF-8") as f:
             json.dump(my_obj, f)
 
