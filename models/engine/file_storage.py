@@ -29,6 +29,12 @@ class FileStorage:
 
     def all(self):
         """Returns object"""
+        f = "%Y-%m-%dT%H:%M:%S.%f"
+        my_obj = type(self).__objects
+        for k, v in my_obj.items():
+            if type(v['created_at']) is str:
+                 v['created_at'] = datetime.strptime(v['created_at'], f)
+                 v['updated_at'] = datetime.strptime(v['updated_at'], f)
         return type(self).__objects
 
     def new(self, obj):
@@ -59,3 +65,4 @@ class FileStorage:
                     v['created_at'] = datetime.strptime(v['created_at'], f)
                     v['updated_at'] = datetime.strptime(v['updated_at'], f)
                 type(self).__objects = json_str
+                print("How many times do u get called")
