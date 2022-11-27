@@ -39,4 +39,10 @@ If the class name is missing, it prints `** class name missing **` (ex: $ create
 If the class name doesn't exist, it prints `** class doesn't exist **` (ex: $ create MyModel)
 `./destroy`
 Deletes an instance based on the class name and id (save the change into the JSON file). Ex: (hbnb) destroy BaseModel 1234-1234-1234
+`./show`
+Prints the string representation of an instance based on the class name and id. Ex: (hbnb) show BaseModel 1234-1234-1234.
+If the class name is missing, it prints `** class name missing **` (ex: (hbnb) show)
+If the class name doesn't exist, it prints `** class doesn't exist **` (ex: (hbnb) show MyModel)
+If the id is missing, print `** instance id missing **` (ex: (hbnb) show BaseModel)
+If the instance of the class name doesn't exist for the id, it prints `** no instance found **` (ex: (hbnb) show BaseModel 121212)
 
