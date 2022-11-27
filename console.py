@@ -50,7 +50,7 @@ class HBNBCommand(cmd.Cmd):
                         self.count(class_name)
                     elif command[0:4] == "show":
                         cmd = command[5:43].replace('"', '')
-                        arg_id = class_name + " " +cmd
+                        arg_id = class_name + " " + cmd
                         self.do_show(arg_id)
                     elif command[0:7] == "destroy":
                         cmd = command[8:46].replace('"', '')
@@ -59,16 +59,16 @@ class HBNBCommand(cmd.Cmd):
                     else:
                         print("*** Unknown syntax: {}".format(arg))
                         return
-            except:
-                my_list = list(arg.split(" ")) 
+            except error as e:
+                my_list = list(arg.split(" "))
                 if my_list[0] in HBNBCommand.__commands:
                     pass
                 else:
                     print("*** Unknown syntax: {}".format(arg))
 
     def count(self, class_name):
-        """ Implementation for counting objects of a class 
-	Usage: <class name>.count()"""
+        """ Implementation for counting objects of a class
+        Usage: <class name>.count()"""
         get_objects = storage.all()
         count = 0
         for key, value in get_objects.items():
