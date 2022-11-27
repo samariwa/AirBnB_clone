@@ -4,6 +4,7 @@ Unittest for Basemodel class
 """
 import unittest
 from models.base_model import BaseModel
+import datetime
 
 
 class TestBaseModel(unittest.TestCase):
@@ -22,3 +23,15 @@ class TestBaseModel(unittest.TestCase):
         self.assertIsInstance(my_model.name, str)
         self.assertTrue(my_model.my_number, 89)
         self.assertIsInstance(my_model.my_number, int)
+
+    def test_id(self):
+        self.assertNotEqual(self.my_model.id, None)
+        self.assertIs(type(self.my_model.id), str)
+
+    def test_created_at(self):
+        self.assertNotEqual(self.my_model.created_at, None)
+        self.assertIs(type(self.my_model.created_at), datetime.datetime)
+
+    def test_updated_at(self):
+        self.assertNotEqual(self.my_model.updated_at, None)
+        self.assertIs(type(self.my_model.updated_at), datetime.datetime)
