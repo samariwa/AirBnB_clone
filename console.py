@@ -146,8 +146,10 @@ class HBNBCommand(cmd.Cmd):
         except ValueError:
             if arg in HBNBCommand.__classes:
                 print("** instance id missing **")
-            else:
+            elif arg != "":
                 print("** class doesn't exist **")
+            else:
+                print("** class name missing **")
             return
         if class_name in HBNBCommand.__classes and class_id != "":
             my_dict = storage.all()
