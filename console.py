@@ -21,18 +21,19 @@ from datetime import datetime
 
 
 class HBNBCommand(cmd.Cmd):
-    """ 
+    """
     Class HBNBCommand is a subclass of the Cmd class of the cmd module\
     The class will help in building a console interface for manipulating data\
     and objects
     """
     prompt = '(hbnb) '
-    __classes = ['BaseModel', 'User', 'State', 'City', 'Amenity', 'Place', 'Review']
+    __classes = ['BaseModel', 'User', 'State',
+                 'City', 'Amenity', 'Place', 'Review']
 
     def __init__(self):
-        """ 
+        """
         This is the constructor of the HBNBCommand subclass
-	"""
+        """
         super().__init__()
 
     def do_quit(self, arg):
@@ -51,8 +52,8 @@ class HBNBCommand(cmd.Cmd):
     def do_create(self, arg):
         """
         Creates a new instance of the called model,\
-	saves it (to the JSON file) and prints the id
-	"""
+        saves it (to the JSON file) and prints the id
+        """
         if arg != "":
             if arg in HBNBCommand.__classes:
                 cls = globals()[arg]
@@ -84,7 +85,7 @@ class HBNBCommand(cmd.Cmd):
                 my_id = class_name + "." + class_id
                 try:
                     d = my_dict[my_id]
-                except:
+                except Exception as ex:
                     print("** no instance found **")
                     return
                 my_object = "["+class_name+"] ({:s}) {}"
@@ -106,18 +107,17 @@ class HBNBCommand(cmd.Cmd):
             if arg in HBNBCommand.__classes:
                 print("** instance id missing **")
             else:
-                print("** class doesn't exist **") 
+                print("** class doesn't exist **")
             return
         if class_name in HBNBCommand.__classes and class_id != "":
             my_dict = storage.all()
             my_id = class_name + "." + class_id
             try:
                 del my_dict[my_id]
-            except:
+            except Exception as ex:
                 print("** no instance found **")
                 return
             storage.save()
-
 
     def do_all(self, arg):
         """
@@ -146,12 +146,12 @@ class HBNBCommand(cmd.Cmd):
                 v['updated_at'] = datetime.strptime(v['updated_at'], f)
                 """
                 my_object = my_object.format(class_id, v)
-                if to_append == True:
+                if to_append:
                     my_list.append(my_object)
             print(my_list)
         else:
             print("** class doesn't exist **")
-	
+
     def do_update(self, arg):
         """
         Updates an instance based on the class name and\
@@ -181,9 +181,10 @@ class HBNBCommand(cmd.Cmd):
                 my_obj = my_dict[cls_key]
                 my_obj[cls_attr] = cls_val
                 storage.save()
-            except:
+            except Exception as ex:
                 print("** no instance found **")
                 return
+
 
 if __name__ == '__main__':
     HBNBCommand().cmdloop()
