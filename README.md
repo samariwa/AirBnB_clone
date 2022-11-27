@@ -35,10 +35,12 @@ Prints all string representation of all instances based or not on the class name
 The printed result is a list of strings.\
 If the class name doesn't exist, it prints `** class doesn't exist **` (ex: (hbnb) all MyModel)\
 
+
 ### create
 Creates a new instance of BaseModel, saves it (to the JSON file) and prints the id. Ex: (hbnb) create BaseModel\
 If the class name is missing, it prints `** class name missing **` (ex: (hbnb) create)\
 If the class name doesn't exist, it prints `** class doesn't exist **` (ex: (hbnb) create MyModel)\
+
 
 ### destroy
 Deletes an instance based on the class name and id (save the change into the JSON file). Ex: (hbnb) destroy BaseModel 1234-1234-1234\
@@ -49,6 +51,7 @@ If the class name is missing, it prints `** class name missing **` (ex: (hbnb) s
 If the class name doesn't exist, it prints `** class doesn't exist **` (ex: (hbnb) show MyModel)\
 If the id is missing, print `** instance id missing **` (ex: (hbnb) show BaseModel)\
 If the instance of the class name doesn't exist for the id, it prints `** no instance found **` (ex: (hbnb) show BaseModel 121212)\
+
 
 ### update
 Updates an instance based on the class name and id by adding or updating attribute (save the change into the JSON file). Ex: (hbnb) update BaseModel 1234-1234-1234 email "aibnb@mail.com"\
@@ -65,10 +68,11 @@ If the value for the attribute name doesn't exist, it prints `** value missing *
 All other arguments should not be used (Ex: (hbnb) update BaseModel 1234-1234-1234 email "aibnb@mail.com" first_name "Betty" = (hbnb) update BaseModel 1234-1234-1234 email "aibnb@mail.com")\
 id, created_at and updated_at can't be updated. You can assume they won't be passed in the update command\
 Only simple arguments can be updated: string, integer and float. You can assume nobody will try to update list of ids or datetime\
+  
 
 ### quit
 exits the program\
+  
 
 ### help
-Shows the various functionalities\
-
+Shows the various functionalities
