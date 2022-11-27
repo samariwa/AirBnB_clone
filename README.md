@@ -28,3 +28,8 @@ EOF  all  create  destroy  help  quit  show  update
 (hbnb) quit
 root@pc:
 ```
+With the assumption that we have an object called `My_Model`, the following a descriptions of the console commands:
+`./all`
+Prints all string representation of all instances based or not on the class name. Ex: $ all BaseModel or $ all.
+The printed result is a list of strings.
+If the class name doesn’t exist, it prints `** class doesn't exist **` (ex: $ all MyModel)
