@@ -90,8 +90,6 @@ class BaseModel:
         Updates update time to current
         It saves the dictionary values afresh
         """
-        print("HI")
         self.updated_at = datetime.now()
-        print(self.updated_at)
         storage.new(self.to_dict())
         storage.save()
