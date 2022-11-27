@@ -17,6 +17,7 @@ If the file doesn't exist, no exception should be raised)
 """
 import json
 from os import path
+from datetime import datetime
 
 
 class FileStorage:
@@ -40,7 +41,11 @@ class FileStorage:
     def save(self):
         """Save method"""
         my_file_path = type(self).__file_path
-        my_obj = type(self).__objects
+        my_obj = type(self).__objects.copy()
+        for k, v in my_obj.items():
+            if type(v['created_at']) is not str:
+                v['created_at'] = v['created_at'].isoformat()
+                v['updated_at'] = v['updated_at'].isoformat()        
         with open(my_file_path, "w", encoding="UTF-8") as f:
             json.dump(my_obj, f)
 
@@ -48,4 +53,9 @@ class FileStorage:
         """Reload method"""
         if path.exists(self.__file_path):
             with open(self.__file_path, "r", encoding="UTF-8") as f:
-                type(self).__objects = json.loads(f.read())
+                json_str = json.loads(f.read())
+                f = "%Y-%m-%dT%H:%M:%S.%f"
+                for k, v in json_str.items():
+                    v['created_at'] = datetime.strptime(v['created_at'], f)
+                    v['updated_at'] = datetime.strptime(v['updated_at'], f)
+                type(self).__objects = json_str

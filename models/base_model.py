@@ -32,10 +32,22 @@ from models import storage
 
 
 class BaseModel:
-    """ This is the base class of the models. It contains the core features\
-    that will be inherited by all forms of models in the application """
+    """
+    This is the base class of the models. It contains the core features
+    that will be inherited by all forms of models in the application
+    """
     def __init__(self, *args, **kwargs):
-        """ This is the constructor of the base model """
+        """
+        This is the constructor of the base model
+        Args:
+            *args: Values passed to the objects
+            **kwargs: Attributes of created objects and their values
+            if kwargs is not empty:
+                each key of this dictionary is an attribute name
+        Description: The created_at and updated_at datetime objects
+        are converted to strings.
+        The ID is generated using the UUID module
+        """
         current_time = datetime.today()
         self.id = str(uuid.uuid4())
         self.created_at = current_time
@@ -53,14 +65,20 @@ class BaseModel:
             storage.new()
 
     def __str__(self):
-        """Returns String repersentation of class"""
+        """
+        Returns String repersentation of class
+        Format: [<class name>] (<self.id>) <self.__dict__>
+        """
         my_object = "[{:s}] ({:s}) {}"
         my_dict = self.__dict__
         my_object = my_object.format(type(self).__name__, self.id, my_dict)
         return my_object
 
     def to_dict(self):
-        """Returns dictionary representation of class"""
+        """Returns dictionary representation of class
+        The dictionary should have the timestamps converted to
+        isoformat (%Y-%m-%dT%H:%M:%S.%f)
+        """
         d = self.__dict__.copy()
         d['__class__'] = type(self).__name__
         d['created_at'] = d['created_at'].isoformat()
@@ -68,7 +86,10 @@ class BaseModel:
         return d
 
     def save(self):
-        """Updates upadte time to current"""
+        """
+        Updates update time to current
+        It saves the dictionary values afresh
+        """
         self.updated_at = datetime.now()
         storage.new(self.to_dict())
         storage.save()
