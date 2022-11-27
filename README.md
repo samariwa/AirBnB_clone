@@ -28,40 +28,40 @@ EOF  all  create  destroy  help  quit  show  update
 (hbnb) quit
 root@pc:
 ```
-With the assumption that we have an object called `My_Model`, the following a descriptions of the console commands:
-`./all`
-Prints all string representation of all instances based or not on the class name. Ex: $ all BaseModel or $ all.
-The printed result is a list of strings.
-If the class name doesn't exist, it prints `** class doesn't exist **` (ex: $ all MyModel)
-`./create`
-Creates a new instance of BaseModel, saves it (to the JSON file) and prints the id. Ex: $ create BaseModel
-If the class name is missing, it prints `** class name missing **` (ex: $ create)
-If the class name doesn't exist, it prints `** class doesn't exist **` (ex: $ create MyModel)
-`./destroy`
-Deletes an instance based on the class name and id (save the change into the JSON file). Ex: (hbnb) destroy BaseModel 1234-1234-1234
-`./show`
-Prints the string representation of an instance based on the class name and id. Ex: (hbnb) show BaseModel 1234-1234-1234.
-If the class name is missing, it prints `** class name missing **` (ex: (hbnb) show)
-If the class name doesn't exist, it prints `** class doesn't exist **` (ex: (hbnb) show MyModel)
-If the id is missing, print `** instance id missing **` (ex: (hbnb) show BaseModel)
-If the instance of the class name doesn't exist for the id, it prints `** no instance found **` (ex: (hbnb) show BaseModel 121212)
-`./update`
-Updates an instance based on the class name and id by adding or updating attribute (save the change into the JSON file). Ex: (hbnb) update BaseModel 1234-1234-1234 email "aibnb@mail.com".
-Usage: update <class name> <id> <attribute name> "<attribute value>"
-Only one attribute can be updated at the time
-You can assume the attribute name is valid (exists for this model)
-The attribute value must be casted to the attribute type
-If the class name is missing, it prints `** class name missing **` (ex: (hbnb) update)
-If the class name doesn't exist, it prints `** class doesn't exist **` (ex: (hbnb) update MyModel)
-If the id is missing, it prints `** instance id missing **` (ex: (hbnb) update BaseModel)
-If the instance of the class name doesn't exist for the id, print ** no instance found ** (ex: (hbnb) update BaseModel 121212)
-If the attribute name is missing, it prints `** attribute name missing **` (ex: (hbnb) update BaseModel existing-id)
-If the value for the attribute name doesn't exist, it prints `** value missing **` (ex: (hbnb) update BaseModel existing-id first_name)
-All other arguments should not be used (Ex: (hbnb) update BaseModel 1234-1234-1234 email "aibnb@mail.com" first_name "Betty" = (hbnb) update BaseModel 1234-1234-1234 email "aibnb@mail.com")
-id, created_at and updated_at can't be updated. You can assume they won't be passed in the update command
-Only simple arguments can be updated: string, integer and float. You can assume nobody will try to update list of ids or datetime
-`quit`
-exits the program
-`help`
-Shows the various functionalities
+With the assumption that we have an object called `My_Model`, the following a descriptions of the console commands:\
+`./all`\
+Prints all string representation of all instances based or not on the class name. Ex: (hbnb) all BaseModel or (hbnb) all.\
+The printed result is a list of strings.\
+If the class name doesn't exist, it prints `** class doesn't exist **` (ex: (hbnb) all MyModel)\
+`./create`\
+Creates a new instance of BaseModel, saves it (to the JSON file) and prints the id. Ex: (hbnb) create BaseModel\
+If the class name is missing, it prints `** class name missing **` (ex: (hbnb) create)\
+If the class name doesn't exist, it prints `** class doesn't exist **` (ex: (hbnb) create MyModel)\
+`./destroy`\
+Deletes an instance based on the class name and id (save the change into the JSON file). Ex: (hbnb) destroy BaseModel 1234-1234-1234\
+`./show`\
+Prints the string representation of an instance based on the class name and id. Ex: (hbnb) show BaseModel 1234-1234-1234.\
+If the class name is missing, it prints `** class name missing **` (ex: (hbnb) show)\
+If the class name doesn't exist, it prints `** class doesn't exist **` (ex: (hbnb) show MyModel)\
+If the id is missing, print `** instance id missing **` (ex: (hbnb) show BaseModel)\
+If the instance of the class name doesn't exist for the id, it prints `** no instance found **` (ex: (hbnb) show BaseModel 121212)\
+`./update`\
+Updates an instance based on the class name and id by adding or updating attribute (save the change into the JSON file). Ex: (hbnb) update BaseModel 1234-1234-1234 email "aibnb@mail.com"\
+Usage: update <class name> <id> <attribute name> "<attribute value>"\
+Only one attribute can be updated at the time\
+You can assume the attribute name is valid (exists for this model)\
+The attribute value must be casted to the attribute type\
+If the class name is missing, it prints `** class name missing **` (ex: (hbnb) update)\
+If the class name doesn't exist, it prints `** class doesn't exist **` (ex: (hbnb) update MyModel)\
+If the id is missing, it prints `** instance id missing **` (ex: (hbnb) update BaseModel)\
+If the instance of the class name doesn't exist for the id, print ** no instance found ** (ex: (hbnb) update BaseModel 121212)\
+If the attribute name is missing, it prints `** attribute name missing **` (ex: (hbnb) update BaseModel existing-id)\
+If the value for the attribute name doesn't exist, it prints `** value missing **` (ex: (hbnb) update BaseModel existing-id first_name)\
+All other arguments should not be used (Ex: (hbnb) update BaseModel 1234-1234-1234 email "aibnb@mail.com" first_name "Betty" = (hbnb) update BaseModel 1234-1234-1234 email "aibnb@mail.com")\
+id, created_at and updated_at can't be updated. You can assume they won't be passed in the update command\
+Only simple arguments can be updated: string, integer and float. You can assume nobody will try to update list of ids or datetime\
+`quit`\
+exits the program\
+`help`\
+Shows the various functionalities\
 
