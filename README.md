@@ -60,3 +60,6 @@ If the value for the attribute name doesn't exist, it prints `** value missing *
 All other arguments should not be used (Ex: (hbnb) update BaseModel 1234-1234-1234 email "aibnb@mail.com" first_name "Betty" = (hbnb) update BaseModel 1234-1234-1234 email "aibnb@mail.com")
 id, created_at and updated_at can't be updated. You can assume they won't be passed in the update command
 Only simple arguments can be updated: string, integer and float. You can assume nobody will try to update list of ids or datetime
+`quit`
+exits the program
+
