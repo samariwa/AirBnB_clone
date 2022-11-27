@@ -29,12 +29,53 @@ class HBNBCommand(cmd.Cmd):
     prompt = '(hbnb) '
     __classes = ['BaseModel', 'User', 'State',
                  'City', 'Amenity', 'Place', 'Review']
+    __commands = ['all', 'create', 'update', 'destroy', 'show']
 
     def __init__(self):
         """
         This is the constructor of the HBNBCommand subclass
         """
         super().__init__()
+
+    def default(self, arg):
+        """ Enables consloe manipulate instance using commands like
+        <class name>.command()"""
+        if arg != "":
+            try:
+                class_name, command = arg.split(".")
+                if class_name in HBNBCommand.__classes:
+                    if command == "all()":
+                        self.do_all(class_name)
+                    elif command == "count()":
+                        self.count(class_name)
+                    elif command[0:4] == "show":
+                        cmd = command[5:43].replace('"', '')
+                        arg_id = class_name + " " +cmd
+                        self.do_show(arg_id)
+                    elif command[0:7] == "destroy":
+                        cmd = command[8:46].replace('"', '')
+                        arg_id = class_name + " " + cmd
+                        self.do_destroy(arg_id)
+                    else:
+                        print("*** Unknown syntax: {}".format(arg))
+                        return
+            except:
+                my_list = list(arg.split(" ")) 
+                if my_list[0] in HBNBCommand.__commands:
+                    pass
+                else:
+                    print("*** Unknown syntax: {}".format(arg))
+
+    def count(self, class_name):
+        """ Implementation for counting objects of a class 
+	Usage: <class name>.count()"""
+        get_objects = storage.all()
+        count = 0
+        for key, value in get_objects.items():
+            class_nam, id_ = key.split(".")
+            if class_nam == class_name:
+                count += 1
+        print(count)
 
     def do_quit(self, arg):
         """Quit command to exit the program\n"""
