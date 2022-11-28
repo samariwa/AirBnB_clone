@@ -31,8 +31,9 @@ class HBNBCommand(cmd.Cmd):
                  'City', 'Amenity', 'Place', 'Review']
     __commands = ['all', 'create', 'update', 'destroy', 'show']
 
-   
-
+    def __init__(self, stdout, stdin):
+        pass
+    
     def default(self, arg):
         """ Enables consloe manipulate instance using commands like
         <class name>.command()"""
