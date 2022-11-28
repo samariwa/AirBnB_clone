@@ -31,11 +31,7 @@ class HBNBCommand(cmd.Cmd):
                  'City', 'Amenity', 'Place', 'Review']
     __commands = ['all', 'create', 'update', 'destroy', 'show']
 
-    def __init__(self):
-        """
-        This is the constructor of the HBNBCommand subclass
-        """
-        super().__init__()
+   
 
     def default(self, arg):
         """ Enables consloe manipulate instance using commands like
