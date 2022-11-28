@@ -20,7 +20,7 @@ from models import storage
 from datetime import datetime
 
 
-class HBNBCommand(cmd.Cmd(completekey='tab', stdin=None, stdout=None)):
+class HBNBCommand(cmd.Cmd):
     """
     Class HBNBCommand is a subclass of the Cmd class of the cmd module\
     The class will help in building a console interface for manipulating data\
