@@ -1,4 +1,4 @@
-#!/usr/bin/env python3
+#!/usr/bint_file_storage.py
 """ Test module for FileStorage class.
 """
 from models import storage
