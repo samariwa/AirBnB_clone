@@ -39,10 +39,16 @@ class FileStorage:
 
     def new(self, obj):
         """Saves keys to objects"""
-        my_classname = obj['__class__']
-        my_id = obj['id']
+        if isinstance(obj, dict) is True:
+            my_id = obj['id']
+            my_classname = obj['__class__']
+            my_dict = obj
+        else:
+            my_id = obj.id
+            my_classname = type(obj).__name__
+            my_dict = obj.__dict__
         my_key = my_classname + '.' + my_id
-        type(self).__objects[my_key] = obj
+        type(self).__objects[my_key] = my_dict
 
     def save(self):
         """Save method"""
@@ -53,7 +59,7 @@ class FileStorage:
             if type(v['created_at']) is not str:
                 v['created_at'] = v['created_at'].isoformat()
                 v['updated_at'] = v['updated_at'].isoformat()
-                v['__class__'] = class_name
+            v['__class__'] = class_name
         with open(my_file_path, "w", encoding="UTF-8") as f:
             json.dump(my_obj, f)
 
@@ -66,4 +72,4 @@ class FileStorage:
                 for k, v in json_str.items():
                     v['created_at'] = datetime.strptime(v['created_at'], f)
                     v['updated_at'] = datetime.strptime(v['updated_at'], f)
-                type(self).__objects = json_str
+            type(self).__objects = json_str
