@@ -7,6 +7,7 @@ import unittest
 import datetime
 from models.place import Place
 
+
 class TestPlace(unittest.TestCase):
     """
     Test Individual components for The place Model
@@ -22,7 +23,6 @@ class TestPlace(unittest.TestCase):
         idd = self.my_model.id
         self.assertNotEqual(self.my_model.id, None)
         self.assertIs(type(self.my_model.id), str)
-
 
         # test id is a uuid4 string
         self.assertIs(type(uuid.UUID(idd)), uuid.UUID)
